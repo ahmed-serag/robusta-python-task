@@ -1,6 +1,6 @@
 import unittest
-from shift_encryption_algorithm import shiftEncryption
-from matrix_encryption_algorithm import matrixEncryptionAlgorithm
+from shift_encryption_algorithm import shiftEncryption, decryptShiftEncryption
+from matrix_encryption_algorithm import matrixEncryptionAlgorithm, decryptMatrixEncryptionAlgorithm
 
 class TestEncryptionAlgorithms(unittest.TestCase):
     def test_shiftEncryptionAlgorithm(self):
@@ -17,6 +17,21 @@ class TestEncryptionAlgorithms(unittest.TestCase):
         self.assertEqual(shiftEncryption(' Hello World '), ' Khoor Zruog ')
         # Test sending empty string
         self.assertEqual(shiftEncryption(''), '')
+
+    def test_decryptShiftEncryptedAlgorithm(self):
+        '''test decryption for  shift encryption algorithm'''
+        # Test adding spaces in the middle 
+        self.assertEqual(decryptShiftEncryption('Khoor Zruog'), 'Hello World')
+        # Test Various number of spaces
+        self.assertEqual(decryptShiftEncryption('Khoor  Zruog'), 'Hello  World')
+        # Test adding spaces at the begining of the string
+        self.assertEqual(decryptShiftEncryption(' Khoor Zruog'), ' Hello World')
+        # Test adding spaces at the end of the string
+        self.assertEqual(decryptShiftEncryption('Khoor Zruog '), 'Hello World ')
+        # Test adding spaces at both ends
+        self.assertEqual(decryptShiftEncryption(' Khoor Zruog '), ' Hello World ')
+        # Test sending empty string
+        self.assertEqual(decryptShiftEncryption(''), '')
     
     def test_matrixEncryptionAlgorithm(self):
         self.assertEqual(
@@ -30,6 +45,13 @@ class TestEncryptionAlgorithms(unittest.TestCase):
         self.assertEqual(
             matrixEncryptionAlgorithm(''),
             []
+        )
+    
+    def test_decryptMatrixEncryptionAlgorithm(self):
+        encrypted = matrixEncryptionAlgorithm('Hello World')
+        self.assertEqual(
+            decryptMatrixEncryptionAlgorithm(encrypted),
+            'Hello World'
         )
 
 if __name__ == '__main__':
