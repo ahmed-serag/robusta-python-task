@@ -1,9 +1,12 @@
 import sys
 from shift_encryption_algorithm import shiftEncryption, decryptShiftEncryption
 from matrix_encryption_algorithm import matrixEncryptionAlgorithm, decryptMatrixEncryptionAlgorithm
+from reverse_encryption_algorithm import reverseEncryption, decryptReverseEncryption
+
+validAlgorithms = ['shift_encryption', 'matrix_encryption', 'reverse_encryption']
 
 def validateAlgorithm(algorithm: str) -> bool:
-    return algorithm.lower() == 'shift_encryption' or algorithm.lower() == 'matrix_encryption'
+    return algorithm.lower() in  validAlgorithms
 
 def validateMethod(method: str) -> bool:
     return method.lower() == 'encrypt' or method.lower() == 'decrypt'
@@ -30,12 +33,16 @@ if __name__ == "__main__":
                 modifiedText = shiftEncryption(originalText)
             else:
                 modifiedText = decryptShiftEncryption(originalText)
-        else:
+        elif algorithm.lower() == 'matrix_encryption':
             if method.lower() == 'encrypt':
                 modifiedText = matrixEncryptionAlgorithm(originalText)
             else:
                 modifiedText = decryptMatrixEncryptionAlgorithm(originalText)
-
+        else:
+            if method.lower() == 'encrypt':
+                modifiedText = reverseEncryption(originalText)
+            else:
+                modifiedText = decryptReverseEncryption(originalText)
     if modifiedText:
         print(originalText, '->', modifiedText)
     
