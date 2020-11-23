@@ -62,7 +62,7 @@ a Command line tool to use both algorithms from the command line
 run python script `encrypt.py` with the following args
 
 1. Text to be transformed f/e `hello world`
-2. Encryption algorithm either `shift_encryption` or `matrix_encryption`
+2. Encryption algorithm either `shift_encryption`, `matrix_encryption` or `reverse_encryption`
 3. Method either `encrypt` or `decrypt`
 
 ### Examples
