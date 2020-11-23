@@ -1,7 +1,7 @@
 import unittest
 from shift_encryption_algorithm import shiftEncryption, decryptShiftEncryption
 from matrix_encryption_algorithm import matrixEncryptionAlgorithm, decryptMatrixEncryptionAlgorithm
-
+from reverse_encryption_algorithm import reverseEncryption, decryptReverseEncryption
 class TestEncryptionAlgorithms(unittest.TestCase):
     def test_shiftEncryptionAlgorithm(self):
         '''test shift encryption algorithm'''
@@ -52,6 +52,18 @@ class TestEncryptionAlgorithms(unittest.TestCase):
         self.assertEqual(
             decryptMatrixEncryptionAlgorithm(encrypted),
             'Hello World'
+        )
+
+    def test_reverseEncryptionAlgorithm(self):
+        self.assertEqual(
+            reverseEncryption('hello world'),
+            'dlrow olleh'
+        )
+    
+    def test_decryptReverseEncryptionAlgorithm(self):
+        self.assertEqual(
+            decryptReverseEncryption('dlrow olleh'),
+            'hello world'
         )
 
 if __name__ == '__main__':
